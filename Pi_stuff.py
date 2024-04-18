@@ -3,6 +3,7 @@ import wave
 import matplotlib.pyplot as plt
 import numpy as np
 from numpy.fft import fft, ifft
+import time
 
 def visualize(path: str): 
     
@@ -74,6 +75,7 @@ audio = pyaudio.PyAudio() # create pyaudio instantiation
 stream = audio.open(format = form_1,rate = samp_rate,channels = chans, \
                     input_device_index = dev_index,input = True, \
                     frames_per_buffer=chunk)
+time.sleep(2)
 print("recording")
 frames = []
 ampl =[]
