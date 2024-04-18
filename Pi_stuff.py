@@ -22,10 +22,10 @@ ampl =[]
 # loop through stream and append audio chunks to frame array
 for ii in range(0,int((samp_rate/chunk)*record_secs)):
     data = stream.read(chunk)
-    print(int.from_bytes(data[0:15], "big"))
-    ampl.append(int.from_bytes(data[0:15], "big"))
+    print(int.from_bytes(data[0], "big"))
+    ampl.append(int.from_bytes(data[0], "big"))
     frames.append(data)
-
+print("LENGTH "+str(len(data)))
 print("finished recording")
 
 # stop the stream, close it, and terminate the pyaudio instantiation
