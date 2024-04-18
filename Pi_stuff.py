@@ -1,5 +1,6 @@
 import pyaudio
 import wave
+import matplotlib.pyplot as plt
 
 form_1 = pyaudio.paInt16 # 16-bit resolution
 chans = 1 # 1 channel
@@ -17,10 +18,11 @@ stream = audio.open(format = form_1,rate = samp_rate,channels = chans, \
                     frames_per_buffer=chunk)
 print("recording")
 frames = []
-
+ampl =[]
 # loop through stream and append audio chunks to frame array
 for ii in range(0,int((samp_rate/chunk)*record_secs)):
     data = stream.read(chunk)
+    ampl.append(int.from_bytes(data, "big"))
     frames.append(data)
 
 print("finished recording")
@@ -37,3 +39,6 @@ wavefile.setsampwidth(audio.get_sample_size(form_1))
 wavefile.setframerate(samp_rate)
 wavefile.writeframes(b''.join(frames))
 wavefile.close()
+plt.figure()
+plt.plot(ampl)
+plt.show()
