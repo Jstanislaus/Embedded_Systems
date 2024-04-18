@@ -8,7 +8,7 @@ chunk = 4096 # 2^12 samples for buffer
 record_secs = 3 # seconds to record
 dev_index = 2 # device index found by p.get_device_info_by_index(ii)
 wav_output_filename = 'test1.wav' # name of .wav file
-
+#
 audio = pyaudio.PyAudio() # create pyaudio instantiation
 
 # create pyaudio stream
