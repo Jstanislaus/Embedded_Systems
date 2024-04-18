@@ -1,11 +1,27 @@
-import RPi.GPIO as GPIO
-import time
-# use P1 header pin numbering convention
-GPIO.setmode(GPIO.BOARD)
+import pyaudio
 
-# Set up the GPIO channels - one input and one output
-GPIO.setup(4, GPIO.IN)
-while True:
-    input_value = GPIO.input(4)
-    print(input_value)
-    time.sleep(3)
+def capture_audio():
+    CHUNK = 1024
+    FORMAT = pyaudio.paInt16
+    CHANNELS = 1
+    RATE = 44100
+
+    p = pyaudio.PyAudio()
+    stream = p.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK)
+
+    print("Capturing audio. Press Ctrl+C to stop.")
+
+    try:
+        while True:
+            audio_data = stream.read(CHUNK)
+            # Process audio data as needed (e.g., save to a file, analyze, etc.)
+            # You can replace this print statement with your desired action.
+            print("Audio data received:", len(audio_data))
+    except KeyboardInterrupt:
+        print("Recording stopped by user.")
+        stream.stop_stream()
+        stream.close()
+        p.terminate()
+
+if __name__ == "__main__":
+    capture_audio()
