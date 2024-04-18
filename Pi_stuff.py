@@ -26,7 +26,7 @@ def visualize(path: str):
     # of the audio file 
     t = np.linspace( 
         0, # start 
-        len(signal) / f_rate, 
+        len(signal) / sr, 
         num = len(signal) 
     ) 
     Y = fft(signal)
