@@ -7,7 +7,7 @@ def capture_audio():
     RATE = 44100
 
     p = pyaudio.PyAudio()
-    stream = p.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK)
+    stream = p.open(format=FORMAT, channels=CHANNELS, input_device_index = 1, rate=RATE, input=True, frames_per_buffer=CHUNK)
 
     print("Capturing audio. Press Ctrl+C to stop.")
 
