@@ -16,6 +16,7 @@ def capture_audio():
             audio_data = stream.read(CHUNK)
             # Process audio data as needed (e.g., save to a file, analyze, etc.)
             # You can replace this print statement with your desired action.
+            actual_data = int.from_bytes(audio_data,'big')
             print("Audio data received:", str(audio_data))
     except KeyboardInterrupt:
         print("Recording stopped by user.")
