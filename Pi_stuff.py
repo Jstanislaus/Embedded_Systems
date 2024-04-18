@@ -75,7 +75,8 @@ audio = pyaudio.PyAudio() # create pyaudio instantiation
 stream = audio.open(format = form_1,rate = samp_rate,channels = chans, \
                     input_device_index = dev_index,input = True, \
                     frames_per_buffer=chunk)
-time.sleep(2)
+for ii in range(0,int((samp_rate/chunk)*1)):
+    data = stream.read(chunk)
 print("recording")
 frames = []
 ampl =[]
