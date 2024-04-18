@@ -1,28 +1,39 @@
 import pyaudio
+import wave
 
-def capture_audio():
-    CHUNK = 1024
-    FORMAT = pyaudio.paInt16
-    CHANNELS = 1
-    RATE = 44100
+form_1 = pyaudio.paInt16 # 16-bit resolution
+chans = 1 # 1 channel
+samp_rate = 44100 # 44.1kHz sampling rate
+chunk = 4096 # 2^12 samples for buffer
+record_secs = 3 # seconds to record
+dev_index = 2 # device index found by p.get_device_info_by_index(ii)
+wav_output_filename = 'test1.wav' # name of .wav file
 
-    p = pyaudio.PyAudio()
-    stream = p.open(format=FORMAT, channels=CHANNELS, input_device_index = 1, rate=RATE, input=True, frames_per_buffer=CHUNK)
+audio = pyaudio.PyAudio() # create pyaudio instantiation
 
-    print("Capturing audio. Press Ctrl+C to stop.")
+# create pyaudio stream
+stream = audio.open(format = form_1,rate = samp_rate,channels = chans, \
+                    input_device_index = dev_index,input = True, \
+                    frames_per_buffer=chunk)
+print("recording")
+frames = []
 
-    try:
-        while True:
-            audio_data = stream.read(CHUNK)
-            # Process audio data as needed (e.g., save to a file, analyze, etc.)
-            # You can replace this print statement with your desired action.
-            actual_data = int.from_bytes(audio_data,'big')
-            print("Audio data received:", str(len(audio_data)))
-    except KeyboardInterrupt:
-        print("Recording stopped by user.")
-        stream.stop_stream()
-        stream.close()
-        p.terminate()
+# loop through stream and append audio chunks to frame array
+for ii in range(0,int((samp_rate/chunk)*record_secs)):
+    data = stream.read(chunk)
+    frames.append(data)
 
-if __name__ == "__main__":
-    capture_audio()
+print("finished recording")
+
+# stop the stream, close it, and terminate the pyaudio instantiation
+stream.stop_stream()
+stream.close()
+audio.terminate()
+
+# save the audio frames as .wav file
+wavefile = wave.open(wav_output_filename,'wb')
+wavefile.setnchannels(chans)
+wavefile.setsampwidth(audio.get_sample_size(form_1))
+wavefile.setframerate(samp_rate)
+wavefile.writeframes(b''.join(frames))
+wavefile.close()

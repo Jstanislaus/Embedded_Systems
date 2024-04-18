@@ -1,0 +1,113 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2024.04.18 11:24:47 =~=~=~=~=~=~=~=~=~=~=~=
+1,12746
+6,3738
+11,2176
+16,1552
+21,1185
+26,973
+31,825
+36,702
+41,622
+46,558
+51,506
+56,46
+61,427
+6,383
+71,361
+76,339
+81,319
+86,301
+91,285
+96,271
+MicroPython v1.18 on 2023-10-30; micro:bit v2.1.2 with nRF52833
+Type "help()" or more information.
+>>> 1,25486
+11,4351
+Traceback (most recent call last):
+  File "main.py", line 27, in <module>
+KeyboardInterrup: 
+MicroPython v1.18 on 2023-10-30; micro:bit v2.1.2 with nRF52833
+Type "help()" for more information.
+>>> 100,520
+110,472
+120,437
+130,396
+140,366
+150,342
+160,325
+170,303
+180,290
+190,272
+200,260
+210,250
+220,236
+230,227
+240,21
+250,212
+260,199
+20,188
+280,182
+290,177
+300,172
+310,167
+320,16
+330,159
+340,151
+350,147
+360,144
+370,140
+380,137
+390,134
+MicroPython v1.18 on 223-10-30; micro:bit v2.1.2 with nRF52833
+Type "help()" for more information.
+>>> 400,26
+420,251
+440,234
+460,224
+480,216
+500,209
+520,192
+540,185
+560,179
+580,174
+600,169
+620,164
+640,159
+660,155
+680,151
+700,148
+720,144
+740,140
+760,137
+780,134
+800,131
+820,128
+840,126
+860,123
+880,112
+900,110
+920,108
+940,106
+960,104
+980,102
+MicroPython v1.18 on2023-10-30; micro:bit v2.1.2 with nRF52833
+Type "help()" for more information.
+>>> Traceback (most recent call last):
+  File "mai.py", line 27, in <module>
+KeyboardInterrupt: 
+MicroPython v1.18 on 2023-10-30; micro:bit v2.1.2 with nRF52833
+Type"help()" for more information.
+>>> 1000,125
+1040,120
+1080,116
+1120,112
+1160,109
+1200,106
+1240,103
+1280,100
+Traceback (most recent call last):
+  File "main.py", line 27, in <module>
+KeybordInterrupt: 
+MicroPython v1.18 on 2023-10-30; micro:bit v2.1.2 with nRF52833
+Type "help()" for more information.
+>>> 
