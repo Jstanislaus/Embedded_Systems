@@ -22,6 +22,7 @@ ampl =[]
 # loop through stream and append audio chunks to frame array
 for ii in range(0,int((samp_rate/chunk)*record_secs)):
     data = stream.read(chunk)
+    print(int.from_bytes(data, "big"))
     ampl.append(int.from_bytes(data, "big"))
     frames.append(data)
 
