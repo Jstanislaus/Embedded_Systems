@@ -2,6 +2,7 @@ import pyaudio
 import wave
 import matplotlib.pyplot as plt
 import numpy as np
+from numpy.fft import fft, ifft
 
 def visualize(path: str): 
     
@@ -14,33 +15,40 @@ def visualize(path: str):
     signal = np.frombuffer(signal, dtype ="int16") 
       
     # gets the frame rate 
-    f_rate = raw.getframerate() 
-  
+    sr = raw.getframerate() 
+    ts = 1/sr #time for each frame
+    t = np.arange(0,3,ts)
     # to Plot the x-axis in seconds  
     # you need get the frame rate  
     # and divide by size of your signal 
     # to create a Time Vector  
     # spaced linearly with the size  
     # of the audio file 
-    time = np.linspace( 
+    t = np.linspace( 
         0, # start 
         len(signal) / f_rate, 
         num = len(signal) 
     ) 
-  
+    Y = fft(signal)
+    N = len(signal)
+    n = np.arange(N)
+    T =N/sr
+    freq = n/T
     # using matplotlib to plot 
     # creates a new figure 
-    plt.figure(1) 
-      
-    # title of the plot 
-    plt.title("Sound Wave") 
-      
-    # label of x-axis 
-    plt.xlabel("Time") 
-     
+    plt.figure(figsize = (12, 6))
+    plt.subplot(121)
+
+    plt.stem(freq, np.abs(Y), 'b', \
+         markerfmt=" ", basefmt="-b")
+    plt.xlabel('Freq (Hz)')
+    plt.ylabel('FFT Amplitude |X(freq)|')
+
+    plt.subplot(122)
     # actual plotting 
-    plt.plot(time, signal) 
-      
+    plt.plot(t, signal) 
+    plt.xlabel('Time (s)')
+    plt.ylabel('Amplitude')
     # shows the plot  
     # in new window 
     plt.show() 
@@ -94,7 +102,6 @@ wavefile.setsampwidth(audio.get_sample_size(form_1))
 wavefile.setframerate(samp_rate)
 wavefile.writeframes(b''.join(frames))
 wavefile.close()
-plt.figure()
-plt.plot(ampl)
-plt.show()
 visualize(wav_output_filename)
+
+
